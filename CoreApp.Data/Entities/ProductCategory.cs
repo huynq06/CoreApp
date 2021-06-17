@@ -27,7 +27,7 @@ namespace CoreApp.Data.Entities
 
         public DateTime DateCreated { set; get; }
         public DateTime DateModified { set; get; }
-        public int SorOrder { set; get; }
+        public int SortOrder { set; get; }
         public Status Status { set; get; }
         public string SeoPageTitle { set; get; }
         public string SeoAlias { set; get; }
