@@ -1,7 +1,11 @@
 ﻿using AutoMapper;
+using CoreApp.Application.Implementations;
+using CoreApp.Application.Interfaces;
 using CoreApp.Data;
 using CoreApp.Data.EF;
+using CoreApp.Data.EF.Repositories;
 using CoreApp.Data.Entities;
+using CoreApp.Data.IRepositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -49,6 +53,9 @@ namespace CoreApp
             services.AddSingleton(Mapper.Configuration);
             services.AddScoped<IMapper>(sp => new Mapper(sp.GetRequiredService<AutoMapper.IConfigurationProvider>(), sp.GetService));
             //services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IProductCategoryRepository, ProductCategoryRepository>();
+
+            services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddTransient<DbInitializer>();
             services.AddMvc();
         }
