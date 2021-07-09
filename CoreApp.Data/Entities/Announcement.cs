@@ -11,12 +11,15 @@ using System.Text;
 namespace CoreApp.Data.Entities
 {
     [Table("Announcements")]
-    public class Announcement : DomainEntity<string>, ISwitchable, IDateTracking
+    public class Announcement :  ISwitchable, IDateTracking
     {
         public Announcement()
         {
             AnnouncementUsers = new List<AnnouncementUser>();
         }
+        [StringLength(128)]
+        [Required]
+        public string Id { set; get; }
 
         [Required]
         [StringLength(250)]

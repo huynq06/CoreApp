@@ -1,5 +1,6 @@
 ﻿using CoreApp.Data.EF.Extenstions;
 using CoreApp.Data.Entities;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;

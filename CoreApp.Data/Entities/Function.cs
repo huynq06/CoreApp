@@ -26,6 +26,7 @@ namespace CoreApp.Data.Entities
             this.SortOrder = sortOrder;
             this.Status = Status.Active;
         }
+
         [Required]
         [StringLength(128)]
         public string Name { set; get; }

@@ -14,7 +14,7 @@ namespace CoreApp.Data.Entities
         public int ProductId { get; set; }
 
         [StringLength(50)]
-        [Column(TypeName = "varchar(255)")]
+        [Column(TypeName = "varchar(50)")]
         public string TagId { set; get; }
 
         [ForeignKey("ProductId")]
