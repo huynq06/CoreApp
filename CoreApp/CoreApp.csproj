@@ -10,6 +10,9 @@
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.1.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+    <PackageReference Include="Microsoft.Extensions.Logging" Version="2.1.1" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="2.1.1" />
+    <PackageReference Include="Serilog.Extensions.Logging.File" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,6 +21,10 @@
     <ProjectReference Include="..\CoreApp.Data\CoreApp.Data.csproj" />
     <ProjectReference Include="..\CoreApp.Infrastructure\CoreApp.Infrastructure.csproj" />
     <ProjectReference Include="..\CoreApp.Utilities\CoreApp.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\admin-side\" />
   </ItemGroup>
 
 </Project>
