@@ -4,11 +4,27 @@
     }
 
     var registerEvents = function () {
+        $('#frmLogin').validate({
+            errorClass: 'red',
+            ignore: [],
+            lang: 'en',
+            rules: {
+                userName: {
+                    required: true
+                },
+                password: {
+                    required: true
+                }
+            }
+        });
         $('#btnLogin').on('click', function (e) {
-            e.preventDefault();
-            var user = $('#txtUserName').val();
-            var password = $('#txtPassword').val();
-            login(user, password);
+            if ($('#frmLogin').valid()) {
+                e.preventDefault();
+                var user = $('#txtUserName').val();
+                var password = $('#txtPassword').val();
+                login(user, password);
+            }
+
         });
     }
 
@@ -16,7 +32,7 @@
         $.ajax({
             type: 'POST',
             data: {
-                UserName: user,
+                
                 Password: pass
             },
             dateType: 'json',
