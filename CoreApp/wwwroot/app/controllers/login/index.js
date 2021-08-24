@@ -32,7 +32,7 @@
         $.ajax({
             type: 'POST',
             data: {
-                
+                UserName: user,
                 Password: pass
             },
             dateType: 'json',
@@ -42,7 +42,7 @@
                     window.location.href = "/Admin/Home/Index";
                 }
                 else {
-                    tedu.notify('Đăng nhập không đúng', 'error');
+                    tedu.notify('Login failed', 'error');
                 }
             }
         })

@@ -6,6 +6,7 @@ using CoreApp.Data.EF;
 using CoreApp.Data.EF.Repositories;
 using CoreApp.Data.Entities;
 using CoreApp.Data.IRepositories;
+using CoreApp.Helpers;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -77,6 +78,7 @@ namespace CoreApp
 
             services.AddTransient<IProductCategoryService, ProductCategoryService>();
             services.AddTransient<DbInitializer>();
+            services.AddScoped<IUserClaimsPrincipalFactory<AppUser>, CustomClaimsPrincipalFactory>();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1).AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
         }
 
@@ -107,7 +109,7 @@ namespace CoreApp
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
                 routes.MapRoute(name: "areaRoute",
-                  template: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+                  template: "{area:exists}/{controller=Login}/{action=Index}/{id?}");
             });
             //dbInitializer.Seed().Wait();
         }
