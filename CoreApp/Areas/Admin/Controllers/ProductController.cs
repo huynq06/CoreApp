@@ -27,6 +27,13 @@ namespace CoreApp.Areas.Admin.Controllers
             int count = model.Count;
             return new OkObjectResult(model);
         }
+        [HttpGet]
+        public IActionResult GetAllPaging(int? categoryId, string keyword, int page, int pageSize)
+        {
+            var model = _productService.GetAllPaging(categoryId, keyword, page, pageSize);
+            int count = model.RowCount;
+            return new OkObjectResult(model);
+        }
         #endregion
     }
 }
