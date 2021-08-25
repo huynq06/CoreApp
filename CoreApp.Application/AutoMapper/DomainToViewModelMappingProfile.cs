@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CoreApp.Application.ViewModels.Products;
+using CoreApp.Application.ViewModels.System;
 using CoreApp.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,7 @@ namespace CoreApp.Application.AutoMapper
         public DomainToViewModelMappingProfile()
         {
             CreateMap<ProductCategory, ProductCategoryViewModel>();
+            CreateMap<Function, FunctionViewModel>();
         }
     }
 }
