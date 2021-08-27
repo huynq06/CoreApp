@@ -3,6 +3,7 @@
         loadCategories();
         loadData();
         registerEvents();
+        registerControls();
     }
 
     function registerEvents() {
@@ -60,7 +61,7 @@
                     $('#txtMetaDescriptionM').val(data.SeoDescription);
                     $('#txtSeoPageTitleM').val(data.SeoPageTitle);
                     $('#txtSeoAliasM').val(data.SeoAlias);
-
+                    CKEDITOR.instances.txtContent.setData(data.Content);
                     //CKEDITOR.instances.txtContentM.setData(data.Content);
                     $('#ckStatusM').prop('checked', data.Status == 1);
                     $('#ckHotM').prop('checked', data.HotFlag);
@@ -121,7 +122,7 @@
                 var seoMetaDescription = $('#txtMetaDescriptionM').val();
                 var seoPageTitle = $('#txtSeoPageTitleM').val();
                 var seoAlias = $('#txtSeoAliasM').val();
-
+                var content = CKEDITOR.instances.txtContent.getData();
                 //var content = CKEDITOR.instances.txtContentM.getData();
                 var status = $('#ckStatusM').prop('checked') == true ? 1 : 0;
                 var hot = $('#ckHotM').prop('checked');
@@ -139,7 +140,7 @@
                         OriginalPrice: originalPrice,
                         PromotionPrice: promotionPrice,
                         Description: description,
-                        Content: '',
+                        Content: content,
                         HomeFlag: showHome,
                         HotFlag: hot,
                         Tags: tags,
@@ -171,6 +172,26 @@
             }
 
         });
+    }
+    function registerControls() {
+        CKEDITOR.replace('txtContent', {});
+
+        //Fix: cannot click on element ck in modal
+        $.fn.modal.Constructor.prototype.enforceFocus = function () {
+            $(document)
+                .off('focusin.bs.modal') // guard against infinite focus loop
+                .on('focusin.bs.modal', $.proxy(function (e) {
+                    if (
+                        this.$element[0] !== e.target && !this.$element.has(e.target).length
+                        // CKEditor compatibility fix start.
+                        && !$(e.target).closest('.cke_dialog, .cke').length
+                        // CKEditor compatibility fix end.
+                    ) {
+                        this.$element.trigger('focus');
+                    }
+                }, this));
+        };
+
     }
     function loadCategories() {
         $.ajax({
